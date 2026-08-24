@@ -1,0 +1,15 @@
+import pandas as pd
+from sklearn.cluster import KMeans
+
+df = pd.read_csv("customers.csv")
+
+X = df[["Income", "Spending"]]
+
+model = KMeans(n_clusters=3, random_state=42, n_init=10)
+model.fit(X)
+
+income = float(input("Income: "))
+spending = float(input("Spending: "))
+
+print("Customer Segment:",
+      model.predict([[income, spending]])[0])

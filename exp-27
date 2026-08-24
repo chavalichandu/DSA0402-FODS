@@ -1,0 +1,17 @@
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+
+df = pd.read_csv("customers.csv")
+
+X = df[["Usage_Minutes", "Contract_Months"]]
+y = df["Churn"]
+
+model = LogisticRegression()
+model.fit(X, y)
+
+usage = float(input("Usage minutes: "))
+contract = int(input("Contract months: "))
+
+pred = model.predict([[usage, contract]])
+
+print("Churn:", "Yes" if pred[0] == 1 else "No")

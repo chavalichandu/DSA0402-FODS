@@ -1,0 +1,16 @@
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+df = pd.read_csv("housing.csv")
+
+X = df[["Area", "Bedrooms"]]
+y = df["Price"]
+
+model = LinearRegression()
+model.fit(X, y)
+
+area = float(input("Area: "))
+bedrooms = int(input("Bedrooms: "))
+
+print("Predicted Price:",
+      model.predict([[area, bedrooms]])[0])

@@ -1,0 +1,17 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor
+
+df = pd.read_csv("cars.csv")
+
+X = df[["Mileage", "Age"]]
+y = df["Price"]
+
+model = DecisionTreeRegressor(max_depth=4, random_state=42)
+model.fit(X, y)
+
+mileage = float(input("Mileage: "))
+age = float(input("Age: "))
+
+price = model.predict([[mileage, age]])
+
+print("Predicted Price:", price[0])

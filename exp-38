@@ -1,0 +1,17 @@
+import pandas as pd
+
+df = pd.read_csv("temperature.csv")
+
+result = df.groupby("City")["Temperature"].agg(
+    ["mean", "std", "min", "max"]
+)
+
+result["Range"] = result["max"] - result["min"]
+
+print(result)
+
+print("Highest Range:",
+      result["Range"].idxmax())
+
+print("Most Consistent:",
+      result["std"].idxmin())
